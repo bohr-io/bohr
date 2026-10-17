@@ -1,6 +1,6 @@
 {
   "name": "bohr",
-  "version": "4.1.4",
+  "version": "4.1.5",
   "description": "Deploy bohr projects from your terminal, scripts, AI agents and GitHub Actions.",
   "license": "MIT",
   "author": "bohr.io",
