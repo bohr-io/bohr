@@ -1,0 +1,75 @@
+/* bohr's identity on Starlight: the panel's dark blue background and its orange/yellow accents
+   (packages/ui/src/styles/tokens.css). Dark is bohr's own theme; the light theme keeps the same accents. */
+
+:root {
+  --bohr-orange: #f26419;
+  --bohr-yellow: #f4cc3a;
+  --bohr-red: #e84855;
+  --bohr-cyan: #55dde0;
+  --bohr-gradient-fire: linear-gradient(180deg, #f4cc3a 0%, #f26419 53.7%, #e84855 100%);
+
+  --sl-font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Dark theme (Starlight's default variables) */
+  --sl-color-accent-low: #3a1906;
+  --sl-color-accent: #f26419;
+  --sl-color-accent-high: #ffd2b8;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #eef2f4;
+  --sl-color-gray-2: #c4cdd3;
+  --sl-color-gray-3: #a6a6a6;
+  --sl-color-gray-4: #6b7a84;
+  --sl-color-gray-5: #2b3a44;
+  --sl-color-gray-6: #16232b;
+  --sl-color-black: #0e171d;
+}
+
+:root[data-theme="light"] {
+  --sl-color-accent-low: #ffe3d1;
+  --sl-color-accent: #c44a0b;
+  --sl-color-accent-high: #5e2203;
+  --sl-color-white: #0e171d;
+  --sl-color-gray-1: #16232b;
+  --sl-color-gray-2: #2b3a44;
+  --sl-color-gray-3: #4f5f69;
+  --sl-color-gray-4: #84939c;
+  --sl-color-gray-5: #c4cdd3;
+  --sl-color-gray-6: #eef2f4;
+  --sl-color-gray-7: #f6f8f9;
+  --sl-color-black: #ffffff;
+}
+
+/* The header and sidebar on the panel's sidebar gradient, in the dark theme */
+:root:not([data-theme="light"]) .header {
+  background: #0e171d;
+  border-bottom-color: hsl(0 0% 100% / 0.1);
+}
+
+:root:not([data-theme="light"]) .sidebar-pane {
+  background: linear-gradient(180deg, hsl(202 32% 14%) 0%, hsl(204 35% 7%) 100%);
+}
+
+.site-title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Page titles with the logo's fire gradient */
+:root:not([data-theme="light"]) h1#_top {
+  background: var(--bohr-gradient-fire);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Links in the dark theme use the panel's cyan, like the app */
+:root:not([data-theme="light"]) .sl-markdown-content a:not(:where(.not-content *)) {
+  color: var(--bohr-cyan);
+}
+
+.sl-markdown-content kbd {
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 4px;
+  padding: 0 0.3em;
+  font-size: 0.85em;
+}

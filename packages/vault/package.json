@@ -1,0 +1,20 @@
+{
+  "name": "@bohr/vault",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Envelope encryption for the credentials a bohr instance keeps: AES-256-GCM data keys wrapped by rotatable master keys.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}

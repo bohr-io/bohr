@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "home": {
+      "title": "bohr.io — Peça mais, programe menos",
+      "description": "Um agente de IA muda seu site ou aplicação a partir de uma conversa no Telegram ou na web, mostra uma homologação e só publica com a sua aprovação. Open source, na sua conta Cloudflare."
+    },
+    "migration": {
+      "title": "Migração para a nova bohr — bohr.io",
+      "description": "Estamos levando os projetos de todos os clientes pagos para a nova versão. Você não precisa fazer nada."
+    }
+  },
+  "common": {
+    "skipToContent": "Pular para o conteúdo",
+    "language": "Idioma",
+    "homeLink": "bohr.io, página inicial",
+    "mainNav": "Principal"
+  },
+  "header": {
+    "howItWorks": "Como funciona",
+    "selfHosted": "Self-hosted",
+    "plans": "Planos",
+    "faq": "FAQ",
+    "docs": "Documentação",
+    "github": "bohr no GitHub"
+  },
+  "hero": {
+    "line1": "Peça mais,",
+    "line2": "programe menos.",
+    "subtitle": "Um agente de IA muda seu site ou aplicação a partir de uma conversa no Telegram ou na web, mostra uma homologação e só publica com a sua aprovação. Open source, na sua conta Cloudflare.",
+    "ctaInstall": "Instale o seu bohr",
+    "ctaCloud": "Usar no bohr.io Cloud",
+    "license": "Open source sob a licença MIT"
+  },
+  "demo": {
+    "title": "Do pedido à produção numa conversa",
+    "caption": "Funciona igual no Telegram e no chat da web.",
+    "status": "online",
+    "pause": "Pausar animação",
+    "play": "Retomar animação",
+    "transcript": "Exemplo de conversa",
+    "you": "Você",
+    "user": "Troca a cor do botão “Comprar” para verde e adiciona Pix como forma de pagamento.",
+    "working": "Entendi. Estou alterando o checkout no branch de homologação…",
+    "ready": "Pronto! Veja como ficou:",
+    "previewUrl": "loja-homolog.workers.dev",
+    "previewLabel": "Prévia da homologação",
+    "approve": "Aprovar",
+    "adjust": "Ajustar",
+    "discard": "Descartar",
+    "tapped": "Você tocou em “Aprovar”.",
+    "published": "Publicado em produção ✅ PR #42 mesclado. Se precisar, é só mandar {command}.",
+    "store": {
+      "name": "Loja Aurora",
+      "product": "Tênis Aurora",
+      "price": "R$ 249,90",
+      "payment": "Forma de pagamento",
+      "card": "Cartão",
+      "pix": "Pix",
+      "buy": "Comprar"
+    }
+  },
+  "how": {
+    "title": "Como funciona",
+    "connect": {
+      "title": "Conecte",
+      "text": "Ligue sua conta Cloudflare, seu repositório do GitHub e sua chave da Anthropic. As chaves vão direto para a sua conta."
+    },
+    "ask": {
+      "title": "Peça",
+      "text": "Descreva a mudança do jeito que você falaria com um dev, pelo Telegram ou pela web."
+    },
+    "review": {
+      "title": "Revise",
+      "text": "O agente edita o código num ambiente isolado e manda o link da homologação. Ajuste quantas vezes quiser."
+    },
+    "approve": {
+      "title": "Aprove",
+      "text": "Um toque abre o PR, faz o merge e o GitHub Actions publica. Deu errado? {command} volta a versão anterior."
+    }
+  },
+  "selfHosted": {
+    "title": "Seu bohr, na sua infraestrutura",
+    "text": "O bohr é open source sob a licença MIT. Instale a sua instância na sua conta Cloudflare em minutos e use com o seu time ou com os seus clientes.",
+    "bullets": {
+      "deploy": "Botão Deploy to Cloudflare ou {command}",
+      "multi": "Uma instância para vários usuários e projetos",
+      "noLockIn": "Sem dependência da bohr.io: o código é seu",
+      "contribute": "Contribuições são bem-vindas no GitHub"
+    },
+    "deployButton": "Deploy to Cloudflare",
+    "githubButton": "Ver no GitHub",
+    "terminal": "Instalação pelo terminal",
+    "copy": "Copiar comandos",
+    "copied": "Copiado!"
+  },
+  "accounts": {
+    "title": "Tudo roda nas suas contas",
+    "text": "A instância é um plano de controle fino. Código, dados e mensagens de cada projeto ficam nas contas do usuário, e cada provedor é pago diretamente.",
+    "instance": {
+      "title": "Sua instância bohr",
+      "onboarding": "Onboarding",
+      "vault": "Cofre de credenciais",
+      "web": "Interface web"
+    },
+    "cloudflare": {
+      "title": "Sua conta Cloudflare",
+      "worker": "Worker do projeto",
+      "sandbox": "Sandbox do agente",
+      "staging": "Homologação",
+      "production": "Produção"
+    },
+    "others": {
+      "title": "Suas outras contas"
+    },
+    "diagram": "Diagrama de como o bohr se conecta às suas contas",
+    "footnote": "A instância guarda só o token da Cloudflare, cifrado, e a instalação do GitHub App."
+  },
+  "security": {
+    "title": "Você decide o que vai para produção",
+    "approval": "Nada chega à produção sem aprovação: toda mudança passa por uma homologação com URL própria.",
+    "members": "Dono e membros: convide pessoas por código e revogue quando quiser.",
+    "sandbox": "Cada projeto tem o seu sandbox isolado; nada é compartilhado entre projetos.",
+    "tokens": "Tokens com escopo mínimo, cifrados e com cada uso registrado.",
+    "rollback": "Rollback com um comando."
+  },
+  "stack": {
+    "title": "Traga o seu stack",
+    "text": "Na importação, o agente lê o repositório e decide onde cada peça roda. O que não tem destino vira um aviso, nunca um deploy quebrado.",
+    "caption": "Onde cada peça do repositório roda",
+    "from": "No repositório",
+    "to": "Em produção",
+    "rows": {
+      "code": { "from": "JS/TS ou Python", "to": "Worker" },
+      "docker": { "from": "Dockerfile", "to": "Container" },
+      "compose": { "from": "Compose com vários serviços", "to": "Um container por serviço" },
+      "postgres": { "from": "Postgres", "to": "Neon, via Hyperdrive" },
+      "redis": { "from": "Redis", "to": "Upstash" },
+      "queues": { "from": "Filas (BullMQ, Celery…)", "to": "Cloudflare Queues" },
+      "files": { "from": "Arquivos gravados em disco", "to": "R2" }
+    },
+    "frameworks": "Frameworks compatíveis"
+  },
+  "plans": {
+    "title": "Escolha como usar",
+    "note": "Preços em dólar. Nos dois planos, a infraestrutura (Cloudflare e tokens da Anthropic) é paga direto aos provedores.",
+    "openSource": {
+      "name": "Self-hosted",
+      "price": "Grátis",
+      "tagline": "Instale na sua conta Cloudflare",
+      "features": {
+        "all": "Todos os recursos",
+        "unlimited": "Usuários e projetos ilimitados",
+        "infra": "Você paga a infra direto: a partir de US$5/mês na Cloudflare, mais os tokens da Anthropic"
+      },
+      "cta": "Instalar"
+    },
+    "cloud": {
+      "name": "bohr.io Cloud",
+      "price": "US$20/mês",
+      "tagline": "A bohr opera a instância; os projetos rodam na sua conta Cloudflare",
+      "features": {
+        "noInstall": "Sem instalar nada",
+        "yourAccount": "Projetos rodam na sua conta Cloudflare",
+        "infra": "Você paga a infra direto aos provedores"
+      },
+      "cta": "Assinar"
+    }
+  },
+  "customers": {
+    "title": "Já é cliente da bohr?",
+    "text": "Seus projetos já rodam na nova versão, com os mesmos domínios e o mesmo preço. Para usar o agente, é só cadastrar a sua chave da Anthropic. Quando quiser, mova cada projeto para a sua própria conta Cloudflare pelo painel.",
+    "link": "Saiba como funciona a migração"
+  },
+  "community": {
+    "title": "Feito em comunidade",
+    "text": "O bohr é construído em público. Participe no GitHub e converse com o time no Discord.",
+    "contributors": "Pessoas que contribuíram com o bohr",
+    "discordTitle": "Junte-se à nossa comunidade",
+    "discordCta": "Entrar no Discord"
+  },
+  "faq": {
+    "title": "Perguntas frequentes",
+    "needCode": {
+      "question": "Preciso saber programar?",
+      "answer": "Não para pedir mudanças: você descreve o que quer e aprova o resultado. Para instalar a sua própria instância, ajuda conhecer o básico de Cloudflare e GitHub."
+    },
+    "cost": {
+      "question": "Quanto custa?",
+      "answer": "O self-hosted é grátis; o agente precisa do plano Workers Paid da Cloudflare (US$5/mês) na sua conta. O bohr.io Cloud custa US$20/mês e funciona com uma conta gratuita da Cloudflare. Nos dois casos, você paga a sua infraestrutura direto aos provedores: o que os seus sites usam na Cloudflare, o uso de containers quando o agente roda na sua conta e os tokens da Anthropic."
+    },
+    "data": {
+      "question": "Onde ficam meus dados?",
+      "answer": "Nas suas contas. O código fica no seu GitHub, os projetos rodam na sua conta Cloudflare e os bancos ficam no seu Neon ou Upstash. A instância guarda só o token da Cloudflare, cifrado."
+    },
+    "telegram": {
+      "question": "Funciona sem Telegram?",
+      "answer": "Sim. A interface web tem o mesmo chat do bot, com a homologação ao lado."
+    },
+    "model": {
+      "question": "Qual modelo de IA o agente usa?",
+      "answer": "O Claude, da Anthropic, com a sua própria chave. Você escolhe o modelo em cada projeto."
+    },
+    "mistakes": {
+      "question": "E se a IA errar?",
+      "answer": "Nada vai para produção sem a sua aprovação. Você revisa tudo na homologação, pede ajustes ou descarta. Depois de publicar, {command} volta a versão anterior."
+    },
+    "difference": {
+      "question": "Qual a diferença entre self-hosted e Cloud?",
+      "answer": "No self-hosted, você instala e opera a instância. No Cloud, a bohr opera a instância por você. Nos dois, os projetos rodam na sua conta Cloudflare."
+    }
+  },
+  "cta": {
+    "title": "Comece agora"
+  },
+  "footer": {
+    "product": "Produto",
+    "docs": "Documentação",
+    "github": "GitHub",
+    "migration": "Migração",
+    "community": "Comunidade",
+    "discord": "Discord",
+    "contact": "Contato",
+    "copyright": "© 2026 bohr.io · Open source sob a licença MIT"
+  },
+  "migration": {
+    "shadow": "migração",
+    "title": "Migração para a nova bohr",
+    "lead": "Estamos levando os projetos de todos os clientes pagos para a nova versão. Você não precisa fazer nada.",
+    "stepsLabel": "Etapas da migração",
+    "steps": {
+      "workflow": "Seu repositório continua como está, sem pull request: o próximo deploy já sai pela nova bohr.",
+      "infrastructure": "Seu site passa a rodar na nova infraestrutura, com os mesmos domínios e sem mudança de DNS.",
+      "previous": "A versão anterior continua no ar até a nova estar publicada e respondendo.",
+      "price": "Seu plano e o seu preço continuam os mesmos, para sempre."
+    },
+    "agent": "Quer usar o agente? Ele já vem ativado nos seus projetos: escolha o provedor (uma chave da Anthropic ou a sua assinatura Claude) no {panel}.",
+    "panel": "painel",
+    "questions": "Dúvidas? Fale com a gente no {discord} ou por e-mail em {email}.",
+    "back": "Voltar para a página inicial"
+  }
+}

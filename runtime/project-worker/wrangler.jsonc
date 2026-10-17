@@ -1,0 +1,39 @@
+// The project Worker as the bohr instance provisions it in the project owner's account.
+// The instance uploads the same shape through the Cloudflare API; this file is for manual deploys and reference.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "bohr-project",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": { "enabled": true },
+  "durable_objects": {
+    "bindings": [{ "name": "PROJECT", "class_name": "Project" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Project"] }],
+  "containers": [
+    {
+      "class_name": "Project",
+      "scheduling_policy": "durable_object",
+      // Built from the monorepo root: pnpm --filter @bohr/agent build first.
+      "images": { "agent": { "dockerfile": "../agent/Dockerfile" } }
+    }
+  ],
+  "vars": {
+    "PROJECT_ID": "p00000000000",
+    "PROJECT_NAME": "My project",
+    "REPO_OWNER": "acme",
+    "REPO_NAME": "site",
+    "PRODUCTION_BRANCH": "main",
+    "INSTANCE_URL": "https://bohr.example.com",
+    "INSTANCE_JWKS": "{\"keys\":[]}",
+    "PREVIEW_URL": "https://bohr-preview-example.example.workers.dev",
+    "PRODUCTION_URL": "",
+    "OWNER_KEY": "tg:0",
+    "OWNER_NAME": "Owner",
+    "DEFAULT_LOCALE": "pt-BR",
+    "CONTAINER_INSTANCE_TYPE": "standard-1"
+  }
+  // Secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_WEBHOOK_SECRET, ANTHROPIC_API_KEY, PROJECT_SECRET
+}

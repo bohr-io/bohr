@@ -1,0 +1,87 @@
+/* Waitlist: the landing page and the admin's extras. */
+
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60rem 30rem at 10% -10%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+    radial-gradient(40rem 30rem at 110% 10%, color-mix(in srgb, #ec4899 16%, transparent), transparent 70%);
+}
+
+.hero {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  padding-block: 3rem;
+}
+
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+    align-content: start;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+.lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 34rem;
+  white-space: pre-line;
+}
+
+.joined {
+  font-weight: 600;
+}
+
+.joined::before {
+  content: '';
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--success) 20%, transparent);
+}
+
+.hero-card {
+  position: relative;
+}
+
+.done {
+  text-align: center;
+  outline: none;
+}
+
+.done-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--on-accent);
+  background: var(--accent);
+}
+
+.position {
+  font-size: 1.5rem;
+  font-weight: 700;
+}

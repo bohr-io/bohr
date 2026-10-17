@@ -1,0 +1,6 @@
+# The build context is the repository root; send Docker only what runtime/agent/Dockerfile copies.
+*
+!runtime/agent/dist/runner.mjs
+!runtime/agent/dist/package.json
+!runtime/agent/dist/THIRD_PARTY_LICENSES.txt
+!runtime/agent/entrypoint.sh

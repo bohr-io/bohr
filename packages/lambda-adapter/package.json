@@ -1,0 +1,20 @@
+{
+  "name": "@bohr/lambda-adapter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Runs AWS Lambda (Function URL / API Gateway v2) handlers on Cloudflare Workers.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}

@@ -1,0 +1,43 @@
+// A local instance on bohr.io Cloud's production data (D1, route records, deployed bundles), for looking at real
+// projects while developing the panel: `pnpm dev:local --prod-db` (scripts/dev-local.mjs). The instance never
+// migrates that database and, unless LOCAL_ALLOW_WRITES is "1", only signs people in (src/index.ts). Secrets in
+// .dev.vars.prod-db (git-ignored): ENCRYPTION_KEY and ADMIN_TOKEN only, so it reaches no Telegram, Stripe or
+// Cloudflare account by itself.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "bohr-local-prod-db",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*", "/setup", "/setup/*", "/.well-known/*", "/health"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bohr-instance",
+      "database_id": "73468eb7-73a5-4fce-8ab3-e5b9a9e8838d",
+      "remote": true
+    }
+  ],
+  "kv_namespaces": [{ "binding": "ROUTES", "id": "1143cc25098843d3bf9d554c3fac2410", "remote": true }],
+  "r2_buckets": [{ "binding": "BUNDLES", "bucket_name": "bohr-deploys", "remote": true }],
+  "workflows": [{ "name": "bohr-provision", "binding": "PROVISION", "class_name": "ProvisionWorkflow" }],
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "LOCAL_PRODUCTION_DB": "1",
+    "APP_URL": "http://localhost:5180",
+    "OIDC_AUDIENCE": "bohr.io",
+    "CF_ACCOUNT_ID": "c7a9524b0838d8c985775e8f22e60214",
+    "DISPATCH_NAMESPACE": "bohr-cloud",
+    "DISPATCHER_SCRIPT": "bohr-dispatcher",
+    "LEGACY_EDGE_SCRIPT": "bohr-tunnel",
+    "BOHR_DOMAIN": "bohr.io",
+    "BOHR_ZONE_ID": "f73305ecde736bb64dc3a7958c3231d7",
+    "EMAIL_FROM": "bohr <login@localhost.test>",
+    "BOHR_TELEMETRY": "off"
+  }
+}

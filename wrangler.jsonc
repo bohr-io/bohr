@@ -1,0 +1,56 @@
+// A self-hosted bohr instance: the API (apps/instance) and the web interface (apps/web) in one Worker.
+// Deploy with the "Deploy to Cloudflare" button or `npx wrangler deploy` (see docs/self-hosting.md).
+// The instance applies its D1 migrations itself on the first request (apps/instance/src/lib/migrate.ts).
+// bohr.io Cloud deploys apps/instance/wrangler.jsonc instead, with managed hosting turned on.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bohr",
+  "main": "apps/instance/src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  // Bundles the project Worker and the migrations into the instance, and builds the web interface
+  "build": { "command": "pnpm --filter @bohr/instance embed && pnpm --filter @bohr/web build" },
+  "observability": { "enabled": true },
+  // Hourly housekeeping
+  "triggers": { "crons": ["17 * * * *"] },
+  // Created by wrangler on the first deploy when it does not exist yet
+  "d1_databases": [{ "binding": "DB", "database_name": "bohr", "migrations_dir": "apps/instance/migrations" }],
+  // Sets up each project's runtime in its owner's Cloudflare account
+  "workflows": [{ "name": "bohr-provision", "binding": "PROVISION", "class_name": "ProvisionWorkflow" }],
+  // Optional: a small dedicated container for connecting Claude subscriptions, so it works without any project
+  // and starts in seconds. Without it, the sign-in runs in one of the owner's project containers (and needs a
+  // project whose agent is ready). It needs Workers Paid and the sign-in image in this account's registry:
+  //   CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ACCOUNT_ID=… node apps/instance/scripts/copy-login-image.mjs
+  // (see docs/self-hosting.md). Then uncomment the three entries below, put your account ID in the image and
+  // deploy again.
+  // "durable_objects": { "bindings": [{ "name": "CLAUDE_LOGIN", "class_name": "ClaudeLoginContainer" }] },
+  // "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ClaudeLoginContainer"] }],
+  // "containers": [
+  //   {
+  //     "class_name": "ClaudeLoginContainer",
+  //     "image": "registry.cloudflare.com/<your account ID>/bohr-claude-login:0.3.4",
+  //     "instance_type": "basic",
+  //     "max_instances": 2
+  //   }
+  // ],
+  "assets": {
+    "directory": "apps/web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*", "/setup", "/setup/*", "/.well-known/*", "/health"]
+  },
+  // Optional: sign-in with an emailed code, through Cloudflare Email Service. Enable Email Sending for a
+  // domain of yours (npx wrangler email sending enable mail.example.com), then uncomment and set EMAIL_FROM.
+  // "send_email": [{ "name": "EMAIL", "allowed_sender_addresses": ["login@mail.example.com"] }],
+  "vars": {
+    // Leave empty to use the URL you open /setup with (the workers.dev address, or your domain)
+    "APP_URL": "",
+    "OIDC_AUDIENCE": "bohr.io"
+    // Anonymous opt-in telemetry (README.md#telemetry): "off" keeps it off whatever the panel says
+    // "BOHR_TELEMETRY": "off"
+    // "EMAIL_FROM": "bohr <login@mail.example.com>"
+  }
+  // Secrets: ADMIN_TOKEN and ENCRYPTION_KEY (required), TELEGRAM_BOT_TOKEN (optional, the platform bot).
+  // See .dev.vars.example.
+}

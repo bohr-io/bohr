@@ -1,0 +1,31 @@
+{
+  "name": "@bohr/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "demo": "vite --mode demo",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit && tsc -p demo",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@bohr/shared": "workspace:*",
+    "@bohr/ui": "workspace:*",
+    "vue": "3.5.43",
+    "vue-i18n": "11.4.14",
+    "vue-router": "5.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.10",
+    "@vue/test-utils": "2.5.1",
+    "happy-dom": "20.14.6",
+    "typescript": "5.9.3",
+    "vite": "8.3.4",
+    "vitest": "4.1.11",
+    "vue-tsc": "3.3.13"
+  }
+}

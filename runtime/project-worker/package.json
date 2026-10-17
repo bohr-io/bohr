@@ -1,0 +1,28 @@
+{
+  "name": "@bohr/project-worker",
+  "version": "0.3.21",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "The Worker each project runs in its owner's Cloudflare account: project bot, request queue, agent sandbox and preview.",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --format=esm --platform=neutral --target=es2023 --main-fields=module,main --conditions=workerd,worker,browser --external:cloudflare:* --external:node:* --external:crypto --minify --legal-comments=none --outfile=dist/project-worker.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@bohr/github": "workspace:*",
+    "@bohr/shared": "workspace:*",
+    "@bohr/telegram": "workspace:*",
+    "jose": "6.2.12",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "0.23.0",
+    "@cloudflare/workers-types": "5.20261011.1",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11",
+    "wrangler": "4.149.0"
+  }
+}

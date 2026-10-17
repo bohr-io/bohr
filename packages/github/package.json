@@ -1,0 +1,26 @@
+{
+  "name": "@bohr/github",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "GitHub App authentication, webhooks, Actions secrets and the REST/GraphQL calls bohr makes.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.worker.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@noble/hashes": "2.4.0",
+    "tweetnacl": "1.0.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261011.1",
+    "@types/node": "26.6.5",
+    "libsodium-wrappers": "0.8.4",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}

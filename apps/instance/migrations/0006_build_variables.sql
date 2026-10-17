@@ -1,0 +1,1 @@
+ALTER TABLE `env_vars` ADD `value_sealed` text;

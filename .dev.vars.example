@@ -1,0 +1,9 @@
+# Secrets of a self-hosted bohr instance. The Deploy to Cloudflare button asks for these;
+# with wrangler, set them with `npx wrangler secret put <NAME>`.
+
+# Protects /setup and the admin API. At least 32 random characters: openssl rand -hex 32
+ADMIN_TOKEN=
+
+# Master key of the vault that encrypts Cloudflare tokens and GitHub App keys. 32 random bytes,
+# base64: openssl rand -base64 32. Keep a copy: without it the stored credentials cannot be read.
+ENCRYPTION_KEY=

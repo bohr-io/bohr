@@ -1,0 +1,99 @@
+/* bohr design tokens. Dark theme only, as in v1. */
+:root {
+  /* Surfaces and text */
+  --bohr-color-bg: #0e171d;
+  --bohr-color-bg-warm: #180b02;
+  --bohr-color-bg-black: #000;
+  --bohr-color-surface: hsl(0 0% 100% / 0.04);
+  --bohr-color-surface-strong: hsl(0 0% 100% / 0.08);
+  --bohr-color-border: hsl(0 0% 100% / 0.1);
+  --bohr-color-text: #fff;
+  --bohr-color-text-muted: #a6a6a6;
+  --bohr-color-text-subtle: #999;
+  --bohr-color-link: #55dde0;
+  --bohr-color-frame: #f16923;
+
+  /* Accents */
+  --bohr-color-orange: #f26419;
+  --bohr-color-red: #e84855;
+  --bohr-color-red-dark: #d73744;
+  --bohr-color-yellow: #f4cc3a;
+  --bohr-color-amber: #f6ae2d;
+  --bohr-color-cyan: #55dde0;
+  --bohr-color-green: #53dd6c;
+  --bohr-color-steel: #365c73;
+  --bohr-color-pink: #cc5ab3;
+  --bohr-color-purple: #8d5adf;
+
+  /* HSL channels, for alpha variations: hsl(var(--bohr-hsl-orange) / 0.1) */
+  --bohr-hsl-white: 0 0% 100%;
+  --bohr-hsl-black: 0 0% 0%;
+  --bohr-hsl-orange: 21 89% 52%;
+  --bohr-hsl-red: 355 78% 60%;
+  --bohr-hsl-yellow: 47 89% 59%;
+  --bohr-hsl-amber: 39 92% 57%;
+  --bohr-hsl-cyan: 181 69% 61%;
+  --bohr-hsl-green: 131 67% 60%;
+  --bohr-hsl-steel: 203 36% 33%;
+  --bohr-hsl-purple: 284 31% 51%;
+  --bohr-hsl-highlight: 191 100% 50%;
+
+  /* Gradients */
+  --bohr-gradient-fire: linear-gradient(180deg, #f4cc3a 0%, #f26419 53.7%, #e84855 100%);
+  --bohr-gradient-primary: linear-gradient(180deg, #f26419 0%, #e84855 100%);
+  --bohr-gradient-secondary: linear-gradient(180deg, #55dde0 0%, #53dd6c 100%);
+  --bohr-gradient-cool: linear-gradient(180deg, #55dde0 0%, #365c73 100%);
+  --bohr-gradient-warn: linear-gradient(180deg, #f4cc3a 0%, #f6ae2d 100%);
+  --bohr-gradient-purple: linear-gradient(180deg, #cc5ab3 0%, #8d5adf 100%);
+  --bohr-gradient-ring: linear-gradient(0deg, #e84856, #f16622, #f4cd3b);
+  --bohr-gradient-sidebar: linear-gradient(180deg, hsl(202 32% 18%) 0%, hsl(204 35% 8%) 100%);
+  --bohr-gradient-glass-shine: linear-gradient(
+    251.43deg,
+    transparent 29.08%,
+    hsl(0 0% 100% / 0.2) 56.83%,
+    transparent 57.84%
+  );
+
+  /* Spotlight: set --bohr-spotlight-y on the element that uses .bohr-spotlight to move it */
+  --bohr-spotlight-y: top;
+  --bohr-spotlight-color: #e8485533;
+  --bohr-spotlight-fade: #0e171d33;
+  --bohr-spotlight: radial-gradient(
+    50vw 50vw at center var(--bohr-spotlight-y),
+    var(--bohr-spotlight-color) 0%,
+    var(--bohr-spotlight-fade) 50vw
+  );
+
+  /* Radii */
+  --bohr-radius-xs: 2px;
+  --bohr-radius-sm: 4px;
+  --bohr-radius-md: 8px;
+  --bohr-radius-full: 9999px;
+
+  /* Shadows */
+  --bohr-shadow-glow: 0 12px 36px 5px rgb(255 0 13 / 0.3);
+  --bohr-shadow-pressed: inset 0 6px 6px rgb(0 0 0 / 0.25);
+  --bohr-shadow-glass: inset 0 0 0 2px hsl(0 0% 100% / 0.1), inset 0 0 0 10px hsl(0 0% 100% / 0.1);
+  --bohr-shadow-card: 0 10px 10px rgb(0 0 0 / 0.3);
+  --bohr-shadow-display: drop-shadow(0 0.05em 0.3125em #000);
+
+  /* Typography */
+  --bohr-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --bohr-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --bohr-font-size-base: 14px;
+  --bohr-font-size-display: 240px;
+  --bohr-font-size-section-title: 45px;
+  --bohr-font-weight-bold: 700;
+  --bohr-letter-spacing-display: -0.1em;
+
+  /* Motion */
+  --bohr-transition: 250ms ease-in-out;
+
+  /* Layout */
+  --bohr-sidebar-width: 96px;
+  --bohr-sidebar-width-expanded: 192px;
+  --bohr-content-max-width: 1180px;
+  --bohr-z-sidebar: 100;
+  --bohr-z-modal: 1000;
+  --bohr-z-toast: 10000;
+}

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; object-src 'none'; base-uri 'none'; form-action 'self'" />
+    <title data-i18n="admin.brand">Link na bio</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/base.css" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <script type="module" src="/assets/admin.js"></script>
+  </head>
+  <body>
+    <main id="setup" class="login" hidden>
+      <div class="card stack">
+        <h1 data-i18n="admin.setupTitle"></h1>
+        <p data-i18n="admin.setupText"></p>
+        <ul class="setup-steps">
+          <li data-i18n="admin.setupBohr"></li>
+          <li data-i18n="admin.setupWrangler"></li>
+          <li data-i18n="admin.setupLocal"></li>
+        </ul>
+      </div>
+    </main>
+
+    <main id="login" class="login" hidden>
+      <form id="login-form" class="card stack">
+        <h1 data-i18n="admin.loginTitle"></h1>
+        <p class="muted" data-i18n="admin.loginText"></p>
+        <input type="text" name="username" value="admin" autocomplete="username" hidden />
+        <label class="field">
+          <span data-i18n="admin.password"></span>
+          <input type="password" name="password" autocomplete="current-password" required maxlength="256" />
+        </label>
+        <p id="login-error" class="alert error" role="alert" hidden></p>
+        <button class="btn primary block" type="submit" data-i18n="admin.login"></button>
+      </form>
+    </main>
+
+    <div id="admin" hidden>
+      <header class="admin-header">
+        <div class="container">
+          <span class="brand" data-i18n="admin.brand"></span>
+          <nav class="tabs" role="tablist">
+            <button type="button" role="tab" id="tab-links" aria-controls="panel-links" aria-selected="true" data-i18n="tab.links"></button>
+            <button type="button" role="tab" id="tab-profile" aria-controls="panel-profile" aria-selected="false" data-i18n="tab.profile"></button>
+          </nav>
+          <a class="btn ghost small" href="/" target="_blank" rel="noopener" data-i18n="admin.viewSite"></a>
+          <button id="logout" class="btn small" type="button" data-i18n="admin.logout"></button>
+        </div>
+      </header>
+
+      <div class="container admin-main admin-layout">
+        <main class="admin-content">
+          <section id="panel-links" role="tabpanel" aria-labelledby="tab-links" class="stack">
+            <div class="stats">
+              <div class="stat"><span class="muted small" data-i18n="stats.total"></span><strong id="stat-total">–</strong></div>
+              <div class="stat"><span class="muted small" data-i18n="stats.week"></span><strong id="stat-week">–</strong></div>
+              <div class="stat"><span class="muted small" data-i18n="stats.visible"></span><strong id="stat-visible">–</strong></div>
+            </div>
+
+            <form id="add-link" class="card add-link" novalidate>
+              <h2 class="add-title" data-i18n="links.new"></h2>
+              <label class="field">
+                <span data-i18n="links.title"></span>
+                <input name="title" required maxlength="80" autocomplete="off" />
+              </label>
+              <label class="field">
+                <span data-i18n="links.url"></span>
+                <input name="url" required maxlength="2048" inputmode="url" autocomplete="off" placeholder="https://" aria-describedby="url-hint" />
+              </label>
+              <button class="btn primary" type="submit" data-i18n="links.add"></button>
+              <p id="url-hint" class="hint muted small" data-i18n="links.urlHint"></p>
+            </form>
+
+            <div class="row spread">
+              <h2 class="section-title" data-i18n="tab.links"></h2>
+              <span id="link-count" class="muted small"></span>
+            </div>
+            <ol id="link-list" class="link-list"></ol>
+            <p id="empty" class="empty" hidden data-i18n="links.empty"></p>
+          </section>
+
+          <section id="panel-profile" role="tabpanel" aria-labelledby="tab-profile" hidden>
+            <form id="profile" class="card stack">
+              <p class="muted small" data-i18n="profile.hint"></p>
+              <div class="avatar-row">
+                <div id="avatar-preview" class="avatar small-avatar" aria-hidden="true"></div>
+                <label class="field grow">
+                  <span data-i18n="profile.name"></span>
+                  <input name="name" maxlength="60" autocomplete="off" />
+                </label>
+              </div>
+              <label class="field">
+                <span class="row spread"><span data-i18n="profile.bio"></span><span id="bio-count" class="muted small" aria-live="polite"></span></span>
+                <textarea name="bio" maxlength="300" rows="3"></textarea>
+              </label>
+              <label class="field">
+                <span data-i18n="profile.avatar"></span>
+                <input name="avatar_url" type="url" maxlength="2048" placeholder="https://" aria-describedby="avatar-hint" />
+                <span id="avatar-hint" class="hint" data-i18n="profile.avatarHint"></span>
+              </label>
+              <fieldset class="field">
+                <legend data-i18n="profile.theme"></legend>
+                <div id="themes" class="themes"></div>
+              </fieldset>
+              <fieldset class="field">
+                <legend data-i18n="profile.socials"></legend>
+                <p class="hint socials-hint" data-i18n="profile.socialsHint"></p>
+                <div id="socials" class="socials-grid"></div>
+              </fieldset>
+              <button class="btn primary" type="submit" data-i18n="common.save"></button>
+            </form>
+          </section>
+        </main>
+
+        <aside class="preview" data-i18n-label="preview.title">
+          <div class="row spread">
+            <h2 class="section-title" data-i18n="preview.title"></h2>
+            <a class="small" href="/" target="_blank" rel="noopener" data-i18n="preview.open"></a>
+          </div>
+          <div class="phone">
+            <iframe id="preview-frame" src="/" data-i18n-title="preview.frame"></iframe>
+          </div>
+        </aside>
+      </div>
+
+      <dialog id="edit-dialog" aria-labelledby="edit-title">
+        <form id="edit-form" class="stack" novalidate>
+          <h2 id="edit-title" data-i18n="links.editTitle"></h2>
+          <label class="field">
+            <span data-i18n="links.title"></span>
+            <input name="title" required maxlength="80" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span data-i18n="links.url"></span>
+            <input name="url" required maxlength="2048" inputmode="url" autocomplete="off" aria-describedby="edit-url-hint" />
+            <span id="edit-url-hint" class="hint" data-i18n="links.urlHint"></span>
+          </label>
+          <label class="check"><input type="checkbox" name="visible" /> <span data-i18n="links.visible"></span></label>
+          <p id="edit-error" class="alert error" role="alert" hidden></p>
+          <div class="row dialog-actions">
+            <button id="edit-cancel" class="btn" type="button" data-i18n="links.cancel"></button>
+            <button class="btn primary" type="submit" data-i18n="common.save"></button>
+          </div>
+        </form>
+      </dialog>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "@bohr/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/check-dist.mjs",
+    "preview": "astro preview",
+    "typecheck": "astro sync && tsc --noEmit",
+    "test": "node --test scripts/*.test.mjs",
+    "deploy": "pnpm run build && wrangler deploy",
+    "downloads": "node scripts/downloads.mjs"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.6",
+    "astro": "7.3.8"
+  },
+  "devDependencies": {
+    "starlight-links-validator": "0.27.0",
+    "typescript": "5.9.3"
+  }
+}

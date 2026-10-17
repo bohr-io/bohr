@@ -1,0 +1,49 @@
+{
+  "name": "bohr",
+  "version": "4.1.4",
+  "description": "Deploy bohr projects from your terminal, scripts, AI agents and GitHub Actions.",
+  "license": "MIT",
+  "author": "bohr.io",
+  "homepage": "https://bohr.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bohr-io/bohr.git",
+    "directory": "packages/cli"
+  },
+  "keywords": [
+    "bohr",
+    "bohr.io",
+    "deploy",
+    "cloudflare",
+    "workers",
+    "cli"
+  ],
+  "type": "module",
+  "bin": {
+    "bohr": "dist/bohr.mjs"
+  },
+  "files": [
+    "dist/bohr.mjs",
+    "dist/THIRD_PARTY_LICENSES.txt"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepack": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@actions/core": "3.0.1",
+    "@bohr/shared": "workspace:*",
+    "@noble/hashes": "2.4.0",
+    "@types/node": "26.6.5",
+    "esbuild": "0.28.2",
+    "jsonc-parser": "3.3.1",
+    "mime": "4.1.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}

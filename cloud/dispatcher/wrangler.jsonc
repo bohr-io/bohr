@@ -1,0 +1,13 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bohr-dispatcher",
+  "main": "src/index.ts",
+  // Not newer than the workerd bundled with @cloudflare/vitest-pool-workers supports.
+  "compatibility_date": "2026-08-15",
+  // Reached only through the routes the instance creates per hostname.
+  "workers_dev": false,
+  "dispatch_namespaces": [{ "binding": "DISPATCHER", "namespace": "bohr-cloud" }],
+  // Route records written by apps/instance (see docs/managed-hosting.md).
+  "kv_namespaces": [{ "binding": "ROUTES", "id": "1143cc25098843d3bf9d554c3fac2410" }],
+  "observability": { "enabled": true }
+}

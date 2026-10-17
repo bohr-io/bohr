@@ -1,0 +1,31 @@
+// Local development only (scripts/dev-local.md): the instance on http://localhost:8787 with a local D1, and the
+// panel from Vite (apps/web) proxying to it. Never deployed: production uses ../../wrangler.jsonc (self-hosted)
+// or ./wrangler.jsonc (bohr.io Cloud).
+// - No custom build: Vite serves the panel, so a type error in apps/web does not stop the instance.
+// - EMAIL: wrangler simulates Cloudflare Email Service locally and prints each message (with the sign-in code)
+//   in its log instead of sending it.
+// - Secrets come from apps/instance/.dev.vars.local (--env-file; git ignores it; scripts/dev-local.mjs creates it).
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "bohr-local",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*", "/setup", "/setup/*", "/.well-known/*", "/health"]
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "bohr-local", "database_id": "local", "migrations_dir": "migrations" }
+  ],
+  "workflows": [{ "name": "bohr-provision", "binding": "PROVISION", "class_name": "ProvisionWorkflow" }],
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "APP_URL": "http://localhost:5180",
+    "OIDC_AUDIENCE": "bohr.io",
+    "EMAIL_FROM": "bohr <login@localhost.test>",
+    "BOHR_TELEMETRY": "off"
+  }
+}

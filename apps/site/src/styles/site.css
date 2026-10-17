@@ -1,0 +1,138 @@
+/* Site layout helpers, built on the @bohr/ui tokens. */
+:root {
+  --gutter: 16px;
+  --header-height: 72px;
+}
+
+@media (min-width: 480px) {
+  :root {
+    --gutter: 25px;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 50px;
+  }
+}
+
+[id] {
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--bohr-content-max-width) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow {
+  max-width: calc(860px + 2 * var(--gutter));
+}
+
+.section {
+  padding-block: clamp(36px, 5.5vw, 64px);
+}
+
+/* v1's 45px gradient section title */
+.section-title {
+  max-width: 20em;
+  margin: 0 auto;
+  padding-bottom: 0.08em;
+  font-size: clamp(30px, 5.2vw, 45px);
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  color: transparent;
+  background-image: var(--bohr-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.section-lead {
+  max-width: 720px;
+  margin: 20px auto 0;
+  font-size: clamp(17px, 2vw, 20px);
+  line-height: 1.55;
+  text-align: center;
+  color: var(--bohr-color-text-muted);
+}
+
+/* Title inside a colored box */
+.box-title {
+  padding-bottom: 0.06em;
+  font-size: clamp(30px, 4.4vw, 45px);
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.box-lead {
+  font-size: clamp(17px, 1.9vw, 20px);
+  line-height: 1.55;
+  color: var(--bohr-color-text-muted);
+}
+
+.gradient-text {
+  color: transparent;
+  background-image: var(--bohr-gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gradient-text--fire {
+  background-image: var(--bohr-gradient-fire);
+}
+
+.gradient-text--secondary {
+  background-image: var(--bohr-gradient-secondary);
+}
+
+.gradient-text--cool {
+  background-image: var(--bohr-gradient-cool);
+}
+
+.gradient-text--warn {
+  background-image: var(--bohr-gradient-warn);
+}
+
+.gradient-text--purple {
+  background-image: var(--bohr-gradient-purple);
+}
+
+.inline-code {
+  padding: 0.1em 0.4em;
+  border-radius: var(--bohr-radius-sm);
+  font-family: var(--bohr-font-family-mono);
+  font-size: 0.88em;
+  white-space: nowrap;
+  color: var(--bohr-color-cyan);
+  background-color: hsl(var(--bohr-hsl-cyan) / 0.12);
+}
+
+.text-link {
+  color: var(--bohr-color-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.text-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 1000;
+  padding: 12px 16px;
+  border-radius: var(--bohr-radius-sm);
+  font-weight: 700;
+  color: #fff;
+  background: #000;
+}
+
+.skip-link:focus {
+  top: 16px;
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "waitlist",
+    "repository": "bohr-io/template-waitlist",
+    "database": true,
+    "locales": {
+      "pt-BR": {
+        "name": "Lista de espera",
+        "description": "Uma página de lançamento que coleta nome e e-mail de interessados, sem duplicados, com painel para ver, buscar e exportar as inscrições em CSV."
+      },
+      "en": {
+        "name": "Waitlist",
+        "description": "A launch page that collects names and emails of interested people, without duplicates, with an admin to see, search and export sign-ups as CSV."
+      },
+      "es": {
+        "name": "Lista de espera",
+        "description": "Una página de lanzamiento que recoge nombre y correo de interesados, sin duplicados, con un panel para ver, buscar y exportar las inscripciones en CSV."
+      }
+    },
+    "tags": ["marketing", "forms"]
+  },
+  {
+    "slug": "booking",
+    "repository": "bohr-io/template-booking",
+    "database": true,
+    "locales": {
+      "pt-BR": {
+        "name": "Agendamentos",
+        "description": "Uma página de agendamento online em que clientes escolhem serviço, dia e horário livre, com painel para confirmar horários e editar serviços e expediente."
+      },
+      "en": {
+        "name": "Booking",
+        "description": "An online booking page where customers pick a service, a day and a free time, with an admin to confirm bookings and manage services and opening hours."
+      },
+      "es": {
+        "name": "Reservas",
+        "description": "Una página de reservas en línea donde los clientes eligen servicio, día y horario libre, con un panel para confirmar citas y gestionar servicios y horarios."
+      }
+    },
+    "tags": ["business", "scheduling"]
+  },
+  {
+    "slug": "link-in-bio",
+    "repository": "bohr-io/template-link-in-bio",
+    "database": true,
+    "locales": {
+      "pt-BR": {
+        "name": "Link na bio",
+        "description": "Uma página com sua foto, bio e todos os seus links, com contagem de cliques por link e um painel para editar, ocultar e reordenar."
+      },
+      "en": {
+        "name": "Link in bio",
+        "description": "A page with your photo, bio and all your links, with click counts per link and an admin to edit, hide and reorder them."
+      },
+      "es": {
+        "name": "Link en la bio",
+        "description": "Una página con tu foto, bio y todos tus enlaces, con conteo de clics por enlace y un panel para editarlos, ocultarlos y reordenarlos."
+      }
+    },
+    "tags": ["social", "marketing"]
+  },
+  {
+    "slug": "forms",
+    "repository": "bohr-io/template-forms",
+    "database": true,
+    "locales": {
+      "pt-BR": {
+        "name": "Formulários e pesquisas",
+        "description": "Crie formulários com perguntas de texto, e-mail, múltipla escolha e estrelas, compartilhe o link e veja as respostas em gráficos ou exporte em CSV."
+      },
+      "en": {
+        "name": "Forms and surveys",
+        "description": "Build forms with text, email, multiple choice and star rating questions, share the link and see the answers as charts or export them as CSV."
+      },
+      "es": {
+        "name": "Formularios y encuestas",
+        "description": "Crea formularios con preguntas de texto, correo, opción múltiple y estrellas, comparte el enlace y ve las respuestas en gráficos o expórtalas en CSV."
+      }
+    },
+    "tags": ["forms"]
+  },
+  {
+    "slug": "menu",
+    "repository": "bohr-io/template-menu",
+    "database": true,
+    "locales": {
+      "pt-BR": {
+        "name": "Cardápio digital",
+        "description": "Um cardápio online com carrinho em que o cliente monta o pedido e envia pelo WhatsApp, com painel para gerenciar pedidos, itens e preços."
+      },
+      "en": {
+        "name": "Digital menu",
+        "description": "An online menu with a cart where customers build their order and send it on WhatsApp, with an admin to manage orders, items and prices."
+      },
+      "es": {
+        "name": "Menú digital",
+        "description": "Un menú online con carrito donde el cliente arma su pedido y lo envía por WhatsApp, con un panel para gestionar pedidos, productos y precios."
+      }
+    },
+    "tags": ["business", "restaurant"]
+  },
+  {
+    "slug": "short-links",
+    "repository": "bohr-io/template-short-links",
+    "database": true,
+    "locales": {
+      "pt-BR": {
+        "name": "Links curtos",
+        "description": "Um encurtador de links no seu próprio domínio, com links personalizados, cliques por dia e um painel para criar, editar e desativar links."
+      },
+      "en": {
+        "name": "Short links",
+        "description": "A URL shortener on your own domain, with custom links, clicks per day and an admin to create, edit and turn links off."
+      },
+      "es": {
+        "name": "Enlaces cortos",
+        "description": "Un acortador de enlaces en tu propio dominio, con enlaces personalizados, clics por día y un panel para crear, editar y desactivar enlaces."
+      }
+    },
+    "tags": ["marketing", "tools"]
+  }
+]

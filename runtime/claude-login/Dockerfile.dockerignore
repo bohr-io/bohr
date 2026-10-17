@@ -1,0 +1,5 @@
+# The build context is the repository root; send Docker only what runtime/claude-login/Dockerfile copies.
+*
+!runtime/claude-login/dist/server.mjs
+!runtime/claude-login/dist/package.json
+!runtime/claude-login/dist/THIRD_PARTY_LICENSES.txt

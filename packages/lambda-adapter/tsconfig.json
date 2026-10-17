@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // Node's typings declare the same Web globals (Request, Response, Headers, crypto) that Workers have.
+    "types": ["node"]
+  },
+  "include": ["src", "test", "vitest.config.ts"]
+}

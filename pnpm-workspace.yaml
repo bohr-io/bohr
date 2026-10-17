@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+  - cloud/*
+  - runtime/*
+
+onlyBuiltDependencies:
+  - esbuild
+  - workerd
+
+overrides:
+  unhead: 2.1.17

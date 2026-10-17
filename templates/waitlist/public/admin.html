@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; object-src 'none'; base-uri 'none'; form-action 'self'" />
+    <title data-i18n="admin.brand">Lista de espera</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/base.css" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <script type="module" src="/assets/admin.js"></script>
+  </head>
+  <body>
+    <main id="setup" class="login" hidden>
+      <div class="card stack">
+        <h1 data-i18n="admin.setupTitle"></h1>
+        <p data-i18n="admin.setupText"></p>
+        <ul class="setup-steps">
+          <li data-i18n="admin.setupBohr"></li>
+          <li data-i18n="admin.setupWrangler"></li>
+          <li data-i18n="admin.setupLocal"></li>
+        </ul>
+      </div>
+    </main>
+
+    <main id="login" class="login" hidden>
+      <form id="login-form" class="card stack">
+        <h1 data-i18n="admin.loginTitle"></h1>
+        <p class="muted" data-i18n="admin.loginText"></p>
+        <input type="text" name="username" value="admin" autocomplete="username" hidden />
+        <label class="field">
+          <span data-i18n="admin.password"></span>
+          <input type="password" name="password" autocomplete="current-password" required maxlength="256" />
+        </label>
+        <p id="login-error" class="alert error" role="alert" hidden></p>
+        <button class="btn primary block" type="submit" data-i18n="admin.login"></button>
+      </form>
+    </main>
+
+    <div id="admin" hidden>
+      <header class="admin-header">
+        <div class="container">
+          <span class="brand" data-i18n="admin.brand"></span>
+          <nav class="tabs" role="tablist">
+            <button type="button" role="tab" id="tab-signups" aria-controls="panel-signups" aria-selected="true" data-i18n="tab.signups"></button>
+            <button type="button" role="tab" id="tab-page" aria-controls="panel-page" aria-selected="false" data-i18n="tab.page"></button>
+          </nav>
+          <a class="btn ghost small" href="/" target="_blank" rel="noopener" data-i18n="admin.viewSite"></a>
+          <button id="logout" class="btn small" type="button" data-i18n="admin.logout"></button>
+        </div>
+      </header>
+
+      <main class="container admin-main">
+        <section id="panel-signups" role="tabpanel" aria-labelledby="tab-signups" class="stack">
+          <div class="stats">
+            <div class="stat"><span class="muted small" data-i18n="stats.total"></span><strong id="stat-total">–</strong></div>
+            <div class="stat"><span class="muted small" data-i18n="stats.today"></span><strong id="stat-today">–</strong></div>
+            <div class="stat"><span class="muted small" data-i18n="stats.week"></span><strong id="stat-week">–</strong></div>
+          </div>
+          <div class="toolbar">
+            <input id="search" type="search" class="grow" maxlength="100" data-i18n-placeholder="signups.search" data-i18n-label="signups.search" />
+            <a class="btn" href="/api/admin/signups.csv" download data-i18n="signups.export"></a>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="col.name"></th>
+                  <th data-i18n="col.email"></th>
+                  <th data-i18n="col.phone"></th>
+                  <th data-i18n="col.company"></th>
+                  <th data-i18n="col.note"></th>
+                  <th data-i18n="col.source"></th>
+                  <th data-i18n="col.date"></th>
+                  <th><span class="sr-only" data-i18n="common.delete"></span></th>
+                </tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <p id="empty" class="empty" hidden data-i18n="signups.empty"></p>
+          <div class="pager">
+            <button id="prev" class="btn small" type="button" data-i18n="common.previous"></button>
+            <span id="page-info" class="muted small"></span>
+            <button id="next" class="btn small" type="button" data-i18n="common.next"></button>
+          </div>
+        </section>
+
+        <section id="panel-page" role="tabpanel" aria-labelledby="tab-page" hidden>
+          <form id="settings" class="card stack narrow">
+            <p class="muted small" data-i18n="settings.hint"></p>
+            <label class="field">
+              <span data-i18n="settings.title"></span>
+              <input name="title" maxlength="80" />
+            </label>
+            <label class="field">
+              <span data-i18n="settings.headline"></span>
+              <input name="headline" maxlength="140" />
+            </label>
+            <label class="field">
+              <span data-i18n="settings.description"></span>
+              <textarea name="description" maxlength="600" rows="4"></textarea>
+            </label>
+            <fieldset class="field stack">
+              <legend data-i18n="settings.fields"></legend>
+              <label class="check"><input type="checkbox" name="ask_phone" /> <span data-i18n="settings.askPhone"></span></label>
+              <label class="check"><input type="checkbox" name="ask_company" /> <span data-i18n="settings.askCompany"></span></label>
+              <label class="check"><input type="checkbox" name="ask_note" /> <span data-i18n="settings.askNote"></span></label>
+            </fieldset>
+            <button class="btn primary" type="submit" data-i18n="common.save"></button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

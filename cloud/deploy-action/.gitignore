@@ -1,0 +1,2 @@
+# GitHub runs dist/index.js straight from the repository, so the bundle is committed.
+!dist/

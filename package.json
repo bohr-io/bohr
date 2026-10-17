@@ -1,0 +1,43 @@
+{
+  "name": "bohr",
+  "private": true,
+  "description": "Open-source, self-hosted deploy platform operated by an AI agent through Telegram or the web.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.23.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "deploy": "wrangler deploy",
+    "spike": "node scripts/spike/run.mjs",
+    "dev:local": "node scripts/dev-local.mjs start",
+    "dev:local:stop": "node scripts/dev-local.mjs stop",
+    "dev:local:status": "node scripts/dev-local.mjs status",
+    "dev:local:seed": "node scripts/dev-local.mjs seed"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "esbuild": "0.28.2",
+    "turbo": "2.11.7",
+    "typescript": "5.9.3",
+    "wrangler": "4.149.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "ADMIN_TOKEN": {
+        "description": "Protects /setup and the admin API. At least 32 random characters, for example from: openssl rand -hex 32"
+      },
+      "ENCRYPTION_KEY": {
+        "description": "Master key of the vault that encrypts stored credentials: 32 random bytes in base64 (openssl rand -base64 32). Keep a copy."
+      },
+      "APP_URL": {
+        "description": "Leave empty: the instance uses the address you open /setup with."
+      }
+    }
+  }
+}

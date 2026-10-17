@@ -1,0 +1,16 @@
+// The bohr.io website: static assets only. Routes for bohr.io are set at the cutover from v1, when
+// /api/*, /login* and /.well-known/* stay on the v1 edge Worker until it is turned off.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "bohr-site",
+  "compatibility_date": "2026-08-15",
+  "workers_dev": true,
+  // bohr.io itself. bohr v1's edge (bohr-tunnel) keeps bohr.io/api/*, /getUserByToken and /login-cli through
+  // more specific routes on the zone, so repositories still on bohr v1 keep deploying
+  "routes": [{ "pattern": "bohr.io/*", "zone_name": "bohr.io" }],
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@bohr/claude-login",
+  "version": "0.3.4",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "The instance's dedicated sign-in container: runs the official CLI's claude setup-token to connect a Claude subscription.",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --target=node24 --format=esm --legal-comments=none --metafile=dist/meta.json --outfile=dist/server.mjs && node scripts/image-files.mjs dist/meta.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@bohr/agent": "workspace:*",
+    "@bohr/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11"
+  }
+}

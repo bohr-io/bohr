@@ -1,0 +1,1 @@
+ALTER TABLE `projects` ADD `cf_connection_id` text REFERENCES cf_connections(id) ON DELETE set null;

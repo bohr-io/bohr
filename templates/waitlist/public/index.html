@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; object-src 'none'; base-uri 'none'; form-action 'self'" />
+    <title data-i18n="page.title">Lista de espera</title>
+    <meta name="description" content="Entre na lista de espera." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/base.css" />
+    <link rel="stylesheet" href="/assets/app.css" />
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body>
+    <div class="hero-bg" aria-hidden="true"></div>
+    <main class="container hero">
+      <section class="hero-copy">
+        <p class="eyebrow" data-i18n="page.eyebrow"></p>
+        <h1 id="headline"></h1>
+        <p id="description" class="lead"></p>
+        <p id="joined" class="joined" hidden></p>
+      </section>
+
+      <section class="card hero-card" aria-labelledby="form-title">
+        <form id="signup" class="stack" novalidate>
+          <h2 id="form-title" class="sr-only" data-i18n="form.submit"></h2>
+          <label class="field">
+            <span data-i18n="form.name"></span>
+            <input name="name" autocomplete="name" required minlength="2" maxlength="100" />
+          </label>
+          <label class="field">
+            <span data-i18n="form.email"></span>
+            <input name="email" type="email" autocomplete="email" required maxlength="254" />
+          </label>
+          <label class="field" id="field-phone" hidden>
+            <span><span data-i18n="form.phone"></span> <span class="muted small">(<span data-i18n="form.optional"></span>)</span></span>
+            <input name="phone" type="tel" autocomplete="tel" maxlength="30" />
+          </label>
+          <label class="field" id="field-company" hidden>
+            <span><span data-i18n="form.company"></span> <span class="muted small">(<span data-i18n="form.optional"></span>)</span></span>
+            <input name="company" autocomplete="organization" maxlength="120" />
+          </label>
+          <label class="field" id="field-note" hidden>
+            <span><span data-i18n="form.note"></span> <span class="muted small">(<span data-i18n="form.optional"></span>)</span></span>
+            <textarea name="note" maxlength="1000" rows="3"></textarea>
+          </label>
+          <label class="honeypot" aria-hidden="true">Website <input name="website" tabindex="-1" autocomplete="off" /></label>
+          <p id="error" class="alert error" role="alert" hidden></p>
+          <button class="btn primary block" type="submit" data-i18n="form.submit"></button>
+          <p class="muted small" data-i18n="form.privacy"></p>
+        </form>
+
+        <div id="done" class="stack done" hidden tabindex="-1">
+          <div class="done-icon" aria-hidden="true">✓</div>
+          <h2 data-i18n="done.title"></h2>
+          <p id="position" class="position"></p>
+          <p class="muted" data-i18n="done.text"></p>
+          <button id="copy" class="btn" type="button" data-i18n="done.copy"></button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

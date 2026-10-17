@@ -1,0 +1,38 @@
+# Publishes the bohr CLI (npm "bohr") when a tag cli-v<version> is pushed, with npm's trusted publishing:
+# npm trusts this workflow through GitHub OIDC, so no npm token or 2FA code is involved. The package's
+# Trusted Publisher on npmjs.com must name this repository, this file and the "npm" environment.
+name: Release CLI
+
+on:
+  push:
+    tags: ['cli-v*']
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      # Trusted publishing needs npm 11.5.1 or later
+      - run: npm install -g npm@latest
+      - run: pnpm install --frozen-lockfile
+      - name: The tag is the package's version
+        run: test "cli-v$(node -p "require('./packages/cli/package.json').version")" = "$GITHUB_REF_NAME"
+      - run: pnpm --filter bohr test
+      - run: pnpm --filter bohr build
+      # pnpm pack writes the published package.json (workspace: ranges resolved); npm publishes it through OIDC
+      - name: Publish
+        working-directory: packages/cli
+        run: |
+          pnpm pack --pack-destination "$RUNNER_TEMP"
+          npm publish "$RUNNER_TEMP"/bohr-*.tgz --access public

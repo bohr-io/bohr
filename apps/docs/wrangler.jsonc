@@ -1,0 +1,18 @@
+// bohr's documentation (docs.bohr.io): static assets only, built by `pnpm --filter @bohr/docs build` into dist/.
+// No bindings and no Worker code: Cloudflare serves the files, the 404 page and the Markdown copies (*.md).
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "bohr-docs",
+  "compatibility_date": "2026-08-15",
+  "workers_dev": true,
+  // The custom domain keeps the DNS record; the route wins over the zone's */* route (bohr v1's edge)
+  "routes": [
+    { "pattern": "docs.bohr.io", "custom_domain": true },
+    { "pattern": "docs.bohr.io/*", "zone_name": "bohr.io" }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

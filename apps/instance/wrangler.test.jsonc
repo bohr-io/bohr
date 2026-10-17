@@ -1,0 +1,39 @@
+// The configuration the tests run with: wrangler.jsonc without the web interface's assets, so the
+// tests do not need apps/web built first. Keep the bindings in step with wrangler.jsonc, except the sign-in
+// container (CLAUDE_LOGIN): the tests cannot run containers, so they fake its server through deps; and Browser
+// Rendering (BROWSER), which would start a real browser: the tests fake deps.screenshotter.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "bohr-instance",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  // Hourly: deletes expired deploy sessions
+  "triggers": { "crons": ["17 * * * *"] },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bohr-instance",
+      "database_id": "REPLACE_WITH_D1_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Shared with cloud/dispatcher: hostname -> route record (docs/managed-hosting.md)
+  "kv_namespaces": [{ "binding": "ROUTES", "id": "REPLACE_WITH_ROUTES_KV_ID" }],
+  // Provisions each project's runtime (the project Worker) in the account that runs it
+  "workflows": [{ "name": "bohr-provision", "binding": "PROVISION", "class_name": "ProvisionWorkflow" }],
+  // Deployed bundles and asset manifests, kept for audit and rollback
+  "r2_buckets": [{ "binding": "BUNDLES", "bucket_name": "bohr-deploys" }],
+  "vars": {
+    "APP_URL": "https://app.bohr.io",
+    "OIDC_AUDIENCE": "bohr.io",
+    "CF_ACCOUNT_ID": "REPLACE_WITH_ACCOUNT_ID",
+    "DISPATCH_NAMESPACE": "bohr-cloud",
+    "DISPATCHER_SCRIPT": "bohr-dispatcher",
+    "LEGACY_EDGE_SCRIPT": "bohr-tunnel",
+    "BOHR_DOMAIN": "bohr.io",
+    "BOHR_ZONE_ID": "REPLACE_WITH_BOHR_IO_ZONE_ID"
+  }
+  // Secrets (wrangler secret put): CF_API_TOKEN, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET, ADMIN_TOKEN, ENCRYPTION_KEY
+}

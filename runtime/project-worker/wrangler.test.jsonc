@@ -1,0 +1,26 @@
+// Test configuration: the containers runtime has no local simulator, so tests inject a fake container.
+{
+  "name": "bohr-project-test",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": {
+    "bindings": [{ "name": "PROJECT", "class_name": "Project" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Project"] }],
+  "vars": {
+    "PROJECT_ID": "p3k9x0a7qd2m",
+    "PROJECT_NAME": "Loja Aurora",
+    "REPO_OWNER": "acme",
+    "REPO_NAME": "store",
+    "PRODUCTION_BRANCH": "main",
+    "INSTANCE_URL": "https://bohr.example.com",
+    "INSTANCE_JWKS": "{\"keys\":[]}",
+    "PREVIEW_URL": "https://bohr-preview-x7k2.acme.workers.dev",
+    "PRODUCTION_URL": "https://store.example.com",
+    "OWNER_KEY": "tg:1001",
+    "OWNER_NAME": "Ana",
+    "DEFAULT_LOCALE": "pt-BR",
+    "CONTAINER_INSTANCE_TYPE": "standard-1"
+  }
+}

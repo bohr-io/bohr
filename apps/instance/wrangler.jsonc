@@ -1,0 +1,71 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "bohr-instance",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true },
+  // The Cloud's address; Cloudflare creates the DNS record and the certificate
+  "routes": [{ "pattern": "app.bohr.io", "custom_domain": true }],
+  // Hourly housekeeping: expired deploy sessions and one-time codes
+  "triggers": { "crons": ["17 * * * *"] },
+  // The web interface (apps/web), built by the deploy script; the Worker answers the API routes first
+  "assets": {
+    "directory": "../web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/auth/*", "/setup", "/setup/*", "/.well-known/*", "/health"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bohr-instance",
+      "database_id": "73468eb7-73a5-4fce-8ab3-e5b9a9e8838d",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Shared with cloud/dispatcher: hostname -> route record (docs/managed-hosting.md)
+  "kv_namespaces": [{ "binding": "ROUTES", "id": "1143cc25098843d3bf9d554c3fac2410" }],
+  // Provisions each project's runtime (the project Worker) in the account that runs it
+  "workflows": [{ "name": "bohr-provision", "binding": "PROVISION", "class_name": "ProvisionWorkflow" }],
+  // The dedicated sign-in container for connecting Claude subscriptions (src/containers/claude-login.ts): one
+  // Durable Object and container per user or organization signing in. Without it the sign-in falls back to a
+  // project container.
+  "durable_objects": { "bindings": [{ "name": "CLAUDE_LOGIN", "class_name": "ClaudeLoginContainer" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ClaudeLoginContainer"] }],
+  "containers": [
+    {
+      "class_name": "ClaudeLoginContainer",
+      // ghcr.io/bohr-io/claude-login:<version>, copied into this account's registry before deploying
+      // (node apps/instance/scripts/copy-login-image.mjs)
+      "image": "registry.cloudflare.com/c7a9524b0838d8c985775e8f22e60214/bohr-claude-login:0.3.4",
+      // 1/4 vCPU and 1 GiB: "lite" (256 MiB) is too small for the Claude Code CLI
+      "instance_type": "basic",
+      "max_instances": 5
+    }
+  ],
+  // Email sign-in codes, through Cloudflare Email Service (Email Sending enabled for mail.bohr.io)
+  "send_email": [{ "name": "EMAIL", "allowed_sender_addresses": ["login@mail.bohr.io"] }],
+  // Deployed bundles and asset manifests, kept for audit and rollback
+  "r2_buckets": [{ "binding": "BUNDLES", "bucket_name": "bohr-deploys" }],
+  // Browser Rendering: screenshots of the projects' sites for the panel's cards, kept in BUNDLES under screenshots/
+  // (src/services/screenshots.ts)
+  "browser": { "binding": "BROWSER" },
+  "vars": {
+    "APP_URL": "https://app.bohr.io",
+    "OIDC_AUDIENCE": "bohr.io",
+    "CF_ACCOUNT_ID": "c7a9524b0838d8c985775e8f22e60214",
+    "DISPATCH_NAMESPACE": "bohr-cloud",
+    "DISPATCHER_SCRIPT": "bohr-dispatcher",
+    "LEGACY_EDGE_SCRIPT": "bohr-tunnel",
+    "BOHR_DOMAIN": "bohr.io",
+    "BOHR_ZONE_ID": "f73305ecde736bb64dc3a7958c3231d7",
+    // bohr.io Cloud, US$20/month (Stripe product "bohr.io Cloud")
+    "STRIPE_PRICE_ID": "price_1UPUjMAEDx2R1AdEkHtkJkJl",
+    "EMAIL_FROM": "bohr <login@mail.bohr.io>"
+  }
+  // Secrets (wrangler secret put): ADMIN_TOKEN, ENCRYPTION_KEY, CF_API_TOKEN; bohr.io's GitHub App:
+  // GITHUB_APP_ID, GITHUB_APP_SLUG, GITHUB_APP_PRIVATE_KEY, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET,
+  // GITHUB_WEBHOOK_SECRET; the platform bot: TELEGRAM_BOT_TOKEN; billing: STRIPE_SECRET_KEY,
+  // STRIPE_WEBHOOK_SECRET (STRIPE_PRICE_ID is set above). Optional var: RUNTIME_IMAGE.
+}

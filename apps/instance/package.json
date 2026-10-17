@@ -1,0 +1,40 @@
+{
+  "name": "@bohr/instance",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wrangler dev",
+    "predev": "node scripts/embed-runtime.mjs",
+    "deploy": "node scripts/embed-runtime.mjs && pnpm --filter @bohr/web build && wrangler d1 migrations apply DB --remote && wrangler deploy",
+    "embed": "node scripts/embed-runtime.mjs",
+    "db:generate": "drizzle-kit generate",
+    "pretypecheck": "node scripts/embed-runtime.mjs",
+    "typecheck": "tsc --noEmit",
+    "pretest": "node scripts/embed-runtime.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@bohr/cloudflare": "workspace:*",
+    "@bohr/github": "workspace:*",
+    "@bohr/shared": "workspace:*",
+    "@bohr/telegram": "workspace:*",
+    "@bohr/vault": "workspace:*",
+    "@cloudflare/puppeteer": "1.4.0",
+    "drizzle-orm": "0.45.4",
+    "hono": "4.13.13",
+    "jose": "6.2.12",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@bohr/project-worker": "workspace:*",
+    "@cloudflare/vitest-pool-workers": "0.23.0",
+    "@cloudflare/workers-types": "5.20261011.1",
+    "drizzle-kit": "0.31.11",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3",
+    "vitest": "4.1.11",
+    "wrangler": "4.149.0"
+  }
+}
